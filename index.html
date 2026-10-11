@@ -1,11 +1,522 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Curriculum Vitae 2t</title>
+    <title>Currículum Vitae - Gustavo López</title>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1e293b;
+            --secondary-color: #2563eb;
+            --accent-color: #0284c7;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --border-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: var(--text-dark);
+            line-height: 1.6;
+            padding: 20px 10px;
+        }
+
+        .cv-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        /* Header section */
+        header {
+            background-color: var(--primary-color);
+            color: #ffffff;
+            padding: 40px 30px;
+            position: relative;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .name-title h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .name-title p {
+            color: #93c5fd;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #cbd5e1;
+        }
+
+        .contact-info div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-info i {
+            color: #60a5fa;
+            width: 16px;
+        }
+
+        /* Print Button */
+        .print-btn-container {
+            text-align: right;
+            padding: 15px 30px 0;
+            background: var(--bg-card);
+        }
+
+        .btn-print {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-print:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* Main Content Layout */
+        .content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 6px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
+        }
+
+        /* Summary Profile */
+        .profile-summary {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-align: justify;
+            margin-bottom: 25px;
+            background-color: var(--bg-light);
+            padding: 16px;
+            border-left: 4px solid var(--secondary-color);
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* Certifications List */
+        .cert-category {
+            margin-bottom: 20px;
+        }
+
+        .cert-category-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cert-card {
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .cert-card:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+
+        .cert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 4px;
+        }
+
+        .cert-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .cert-date {
+            font-size: 0.8rem;
+            color: var(--secondary-color);
+            font-weight: 600;
+            white-space: nowrap;
+            background: #eff6ff;
+            padding: 2px 8px;
+            border-radius: 12px;
+        }
+
+        .cert-issuer {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .cert-details {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .cert-id {
+            font-family: monospace;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Sidebar Styling */
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .skills-list {
+            list-style: none;
+        }
+
+        .skills-list li {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skills-list i {
+            color: var(--secondary-color);
+            font-size: 0.75rem;
+        }
+
+        .badge-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .badge {
+            background-color: #f1f5f9;
+            color: var(--primary-color);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Experience Timeline */
+        .experience-item {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--border-color);
+            margin-bottom: 15px;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: var(--secondary-color);
+        }
+
+        .exp-role {
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .exp-time {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .exp-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Print Media Query */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+            }
+            .cv-container {
+                box-shadow: none;
+                border-radius: 0;
+                max-width: 100%;
+            }
+            .print-btn-container {
+                display: none;
+            }
+            header {
+                padding: 25px 30px;
+            }
+            .content {
+                padding: 20px 30px;
+                gap: 20px;
+            }
+            .cert-card {
+                break-inside: avoid;
+            }
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+            .header-main {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
 <body>
-    
+
+<div class="cv-container">
+    <!-- Botón de impresión -->
+    <div class="print-btn-container">
+        <button onclick="window.print()" class="btn-print">
+            <i class="fa-solid fa-print"></i> Imprimir / Guardar en PDF
+        </button>
+    </div>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="header-main">
+            <div class="name-title">
+                <h1>Gustavo López</h1>
+                <p>Orientado a Ciberseguridad, Desarrollo y Tecnología</p>
+            </div>
+            <div class="contact-info">
+                <div><i class="fa-solid fa-envelope"></i> tu-email@ejemplo.com</div>
+                <div><i class="fa-solid fa-phone"></i> +54 9 XX XXXX-XXXX</div>
+                <div><i class="fa-solid fa-location-dot"></i> Buenos Aires, Argentina</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <div class="content">
+        <!-- Columna Izquierda (Principal) -->
+        <main>
+            <!-- Perfil Profesional -->
+            <section>
+                <h2 class="section-title"><i class="fa-solid fa-user-gear"></i> Perfil Profesional</h2>
+                <div class="profile-summary">
+                    Con más de treinta años de experiencia laboral en trabajos operativos y de oficio (jardinería, albañilería, instalaciones eléctricas y construcción en seco/Durlock), me caracterizo por una alta disciplina, puntualidad rigurosa y un compromiso total con cada proyecto asignado. 
+                    <br><br>
+                    Actualmente he canalizado mi capacidad analítica y ética de trabajo hacia el sector de las Tecnologías de la Información. Me he capacitado de forma autodidacta e intensiva en **Python**, **desarrollo web (HTML5, CSS)** y **fundamentos de Ciberseguridad**, avalado por certificaciones internacionales. Busco incorporarme a equipos donde pueda aportar valor, rigurosidad y mi constante motivación de aprendizaje.
+                </div>
+            </section>
+
+            <!-- Educación y Certificaciones -->
+            <section>
+                <h2 class="section-title"><i class="fa-solid fa-certificate"></i> Certificaciones y Formación</h2>
+
+                <!-- Categoría: Ciberseguridad -->
+                <div class="cert-category">
+                    <div class="cert-category-title">
+                        <i class="fa-solid fa-shield-halved"></i> Ciberseguridad y Protección de Datos
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Introducción al Conocimiento de la Ciberseguridad</span>
+                            <span class="cert-date">Octubre 2026</span>
+                        </div>
+                        <div class="cert-issuer">HP LIFE / HP Foundation</div>
+                        <div class="cert-details">Amenazas frecuentes, protección de la información y seguridad de datos en línea.</div>
+                        <div class="cert-id">Certificado N.º: 7b1ddd75-ed59-42c3-ad80-152a194ba068</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Seguridad Digital para tu Día a Día</span>
+                            <span class="cert-date">Octubre 2026</span>
+                        </div>
+                        <div class="cert-issuer">Santander Open Academy</div>
+                        <div class="cert-details">Curso estructurado de 8 horas con autoevaluaciones en 2 módulos.</div>
+                        <div class="cert-id">Certificado N.º: OA-2026-1007003296279</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Fundamentos de Ciberseguridad</span>
+                            <span class="cert-date">Septiembre 2026</span>
+                        </div>
+                        <div class="cert-issuer">Santander Open Academy / IBM</div>
+                        <div class="cert-details">Capacitación sobre conceptos esenciales de seguridad informática respaldada por IBM.</div>
+                        <div class="cert-id">Certificado N.º: OA-2026-0929003259384</div>
+                    </div>
+                </div>
+
+                <!-- Categoría: Programación -->
+                <div class="cert-category">
+                    <div class="cert-category-title">
+                        <i class="fa-solid fa-code"></i> Programación y Desarrollo
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Python Intermedio</span>
+                            <span class="cert-date">Septiembre 2026</span>
+                        </div>
+                        <div class="cert-issuer">Sololearn</div>
+                        <div class="cert-details">Comprensión teórica y práctica avanzada de la sintaxis y estructuras en Python.</div>
+                        <div class="cert-id">Certificado N.º: CC-VFSEEOK0</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Python</span>
+                            <span class="cert-date">Septiembre 2026</span>
+                        </div>
+                        <div class="cert-issuer">Santander Open Academy</div>
+                        <div class="cert-details">Formación de 8 horas orientada a lógica de programación.</div>
+                        <div class="cert-id">Certificado N.º: OA-2026-0914003194171</div>
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Introducción a Python</span>
+                            <span class="cert-date">Abril 2023</span>
+                        </div>
+                        <div class="cert-issuer">Sololearn</div>
+                        <div class="cert-details">Bases del lenguaje, variables, estructuras de control y funciones.</div>
+                        <div class="cert-id">Certificado N.º: CC-S94MUBLZ</div>
+                    </div>
+                </div>
+
+                <!-- Categoría: IA -->
+                <div class="cert-category">
+                    <div class="cert-category-title">
+                        <i class="fa-solid fa-brain"></i> Inteligencia Artificial
+                    </div>
+
+                    <div class="cert-card">
+                        <div class="cert-header">
+                            <span class="cert-title">Domina la IA con Gemini</span>
+                            <span class="cert-date">Octubre 2026</span>
+                        </div>
+                        <div class="cert-issuer">Santander Open Academy / Google Gemini</div>
+                        <div class="cert-details">Uso eficiente e integración de herramientas basadas en Inteligencia Artificial Generativa.</div>
+                        <div class="cert-id">Certificado N.º: OA-2026-1002003273229</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Columna Derecha (Sidebar) -->
+        <aside>
+            <!-- Competencias Técnicas -->
+            <section class="sidebar-section">
+                <h2 class="section-title"><i class="fa-solid fa-laptop-code"></i> Competencias</h2>
+                <div class="badge-container">
+                    <span class="badge">Python</span>
+                    <span class="badge">HTML5 / CSS3</span>
+                    <span class="badge">Ciberseguridad</span>
+                    <span class="badge">Google Gemini / IA</span>
+                    <span class="badge">Seguridad Digital</span>
+                    <span class="badge">Electricidad Básica</span>
+                </div>
+            </section>
+
+            <!-- Habilidades Personales -->
+            <section class="sidebar-section">
+                <h2 class="section-title"><i class="fa-solid fa-thumbs-up"></i> Aptitudes</h2>
+                <ul class="skills-list">
+                    <li><i class="fa-solid fa-check"></i> <strong>Enfoque y Entrega:</strong> Compromiso total con el cumplimiento de asignaciones.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Puntualidad:</strong> Respeto irrestricto por los horarios y acuerdos establecidos.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Capacidad Autodidacta:</strong> Aprendizaje rápido de nuevas tecnologías.</li>
+                    <li><i class="fa-solid fa-check"></i> <strong>Respeto y Ética:</strong> Excelentes relaciones interpersonales y disciplina laboral.</li>
+                </ul>
+            </section>
+
+            <!-- Experiencia Laboral -->
+            <section class="sidebar-section">
+                <h2 class="section-title"><i class="fa-solid fa-briefcase"></i> Experiencia Laboral</h2>
+                <div class="experience-item">
+                    <div class="exp-role">Trabajador Operativo y Oficios Varios</div>
+                    <div class="exp-time">30 años de trayectoria</div>
+                    <div class="exp-desc">
+                        Desempeño en jardinería integral, albañilería, armado e instalación de sistemas en seco (Durlock) y montaje básico de instalaciones eléctricas. Trabajo bajo normas de seguridad personal y mantenimiento de equipos.
+                    </div>
+                </div>
+            </section>
+        </aside>
+    </div>
+</div>
+
 </body>
 </html>
+
+
